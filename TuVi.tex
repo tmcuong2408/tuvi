@@ -88,18 +88,17 @@ Trong đó
 	&\Omega_-:= \{\omega \in \Omega :  \omega \text{ mang tính âm}\} \\
 \end{align*}
 \begin{definition}[Độ phân giải vận số]
-	Từ $n$ nguyên dương cho trước thì $\Omega$ có thể được phân hoạch thành $2^n$ phần rời nhau với $ n \in \mathbb{N^*}$. Ta gọi $n$ là độ phân giải vận số.
+	Từ $n$ nguyên dương cho trước, tập $\Omega$ có thể được phân hoạch thành $2^n$ phần rời nhau với $ n \in \mathbb{N^*}$. Ta gọi $n$ là độ phân giải vận số.
 \end{definition}
 \begin{remark}
 	Xuyên suốt tài liệu này ta giả định độ phân giải vận số là $n$.
 \end{remark}
+\begin{definition}[Hàm tính chất]
+	Ta gọi hàm $d : \set{0,1} \rightarrow \set{+,-}$ với $d(0) = -, d(1) = +$ là hàm tính chất.
+\end{definition}
 \begin{definition}[Sao vận số]
-	Mỗi sao được đánh số thứ tự bằng hệ nhị phân ký hiệu $V_\alpha$ với $\alpha \in \set{0,1}^n$. Cụ thể, chuỗi nhị phân $\alpha = (a_1, a_2, \dots, a_n) \in \{0, 1\}^n$ xác định một tập hợp phần tử trong không gian tích Descartes:$$V_\alpha := \Omega_{a_1} \times \Omega_{a_2} \times \dots \times \Omega_{a_n} = \prod_{i=1}^{n} \Omega_{a_i}$$thỏa mãn các điều kiện:
-	\begin{enumerate}
-		\item $\Omega_0 = \Omega_-, \Omega_1 = \Omega_+$.
-		\item Tính rời nhau: $V_\alpha \cap V_\beta = \emptyset$ với mọi $\alpha \neq \beta$.
-		\item Tính trọn vẹn: $\bigcup_{\alpha \in \{0, 1\}^n} V_\alpha = \Omega$.
-	\end{enumerate}
+	Mỗi sao được đánh số thứ tự bằng hệ nhị phân ký hiệu $V_\alpha$ với $\alpha \in \set{0,1}^n$. Cụ thể, chuỗi nhị phân $\alpha = (a_1, a_2, \dots, a_n) \in \{0, 1\}^n$ xác định một tập hợp phần tử trong không gian tích Descartes:$$V_\alpha := \Omega_{d(a_1)} \times \Omega_{d(a_2)} \times \dots \times \Omega_{d(a_n)} = \prod_{i=1}^{n} \Omega_{d(a_i)}$$
+	Khi đó $V_\alpha$ được gọi là một sao vận số.
 \end{definition}
 \begin{definition}[Tượng]
 	Xét $\alpha \in \set{0,1}^n$, ta gọi mỗi phần tử $v_\alpha \in V_\alpha \in V$ là một tượng.
