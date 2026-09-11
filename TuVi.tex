@@ -2,6 +2,7 @@
 \WarningsOff % Tắt toàn bộ cảnh báo từ tất cả các gói
 \ErrorsOff   % (Cẩn thận) Chỉ dùng nếu bạn chắc chắn code không có lỗi logic nặng
 \documentclass[a4paper,14pt, twoside]{memoir}
+\usepackage{booktabs}
 \usepackage[utf8x]{inputenc}
 \usepackage[vietnamese]{babel}    
 %\usepackage{showframe}
@@ -65,7 +66,7 @@
 	Trong không gian của Vận số học, mỗi lá số không phải là một định mệnh thần bí, mà là một tập hợp vũ trụ được cấu thành từ các tập con phân hoạch (hệ thống 12 cung địa bàn) và các phần tử tương tác (tập hợp các vì sao). Bằng cách sử dụng ngôn ngữ của Lý thuyết tập hợp—như phép ánh xạ từ thời điểm sinh vào không gian lá số, phép giao tạo nên các cách cục, phép hợp giữa các cung liên kết, hay hàm số mô tả sự dịch chuyển của vận hạn theo thời gian—Vận số học bóc tách toàn bộ lớp sương mù tín ngưỡng để trả về bản chất cốt lõi: một hệ thống thuật toán phân tích dữ liệu không gian - thời gian của cổ nhân, được số hóa và cấu trúc hóa dưới tư duy logic thuần túy.
 \end{abstract}
 \tableofcontents
-\chapter{Nền tảng}
+\chapter{Nền tảng của \textbf{vận số học}}
 \section{Tiên đề vận số học}
 
 Gọi $\Omega$ là tập tất cả các vật trong vũ trụ. Ta đưa ra tiên đề hệ tiên đề :
@@ -89,25 +90,149 @@ Trong đó
 \end{align*}
 \section{Các khái niệm}
 \begin{definition}[Độ phân giải vận số]
-	Từ $n$ nguyên dương cho trước, tập $\Omega$ có thể được phân hoạch thành $2^n$ phần rời nhau với $ n \in \mathbb{N^*}$. Ta gọi $n$ là độ phân giải vận số.
+	Từ $n$ nguyên dương cho trước sao cho $\log_2(n)$ nguyên, tập $\Omega$ có thể được phân hoạch thành $2^n$ phần rời nhau và ta gọi $n$ là \textbf{độ phân giải vận số}.
 \end{definition}
 \begin{remark}
-	Xuyên suốt tài liệu này ta giả định độ phân giải vận số là $n$.
+	Xuyên suốt tài liệu này ta giả định độ phân giải vận số là số nguyên dương chẵn $n$.
 \end{remark}
 \begin{definition}[Hàm tính chất]
-	Ta gọi hàm $d : \set{0,1} \rightarrow \set{+,-}$ với $d(0) = -, d(1) = +$ là hàm tính chất.
+	Ta gọi hàm $d : \set{0,1} \rightarrow \set{+,-}$ với $d(0) = -, d(1) = +$ là \textbf{hàm tính chất}.
 \end{definition}
 \begin{definition}[Sao vận số]
-	Mỗi sao được đánh số thứ tự bằng hệ nhị phân ký hiệu $V_\alpha$ với $\alpha \in \set{0,1}^n$. Cụ thể, chuỗi nhị phân $\alpha = (a_1, a_2, \dots, a_n) \in \{0, 1\}^n$ xác định một tập hợp phần tử trong không gian tích Descartes:$$V_\alpha := \Omega_{d(a_1)} \times \Omega_{d(a_2)} \times \dots \times \Omega_{d(a_n)} = \prod_{i=1}^{n} \Omega_{d(a_i)}$$
-	Khi đó $V_\alpha$ được gọi là một sao vận số.
+	Mỗi sao được đánh số thứ tự bằng hệ nhị phân ký hiệu $V_\alpha$ với $\alpha \in \set{0,1}^n$. Cụ thể, chuỗi nhị phân $\alpha = (a_1, a_2, \dots, a_n) \in \{0, 1\}^n$ xác định một tập hợp phần tử trong không gian tích Descartes:$$V_\alpha := \prod_{i=1}^{n} \Omega_{d(a_i)}$$
+	Khi đó $V_\alpha$ được gọi là một \textbf{sao vận số}.
 \end{definition}
 \begin{definition}[Tượng]
-	Xét $\alpha \in \set{0,1}^n$, ta gọi mỗi phần tử $v_\alpha \in V_\alpha \in V$ là một tượng.
+	Xét $\alpha \in \set{0,1}^n$, ta gọi mỗi phần tử $v_\alpha \in V_\alpha \in V$ là một \textbf{tượng}.
 \end{definition}
 \begin{definition}[Không gian sao]
-	Tập tất cả các sao vận số ứng với độ phân giải $n$ được gọi là không gian sao, được ký hiệu là $V$. Dễ thấy $\card V = 2^n$.
+	Tập tất cả các sao vận số ứng với độ phân giải $n$ được gọi là \textbf{Không gian sao}, được ký hiệu là $V$. Dễ thấy $\card V = 2^n$.
 \end{definition}
 \begin{definition}[Hàm ngữ nghĩa]
-	Xét $\alpha \in \set{0,1}^n$, ứng với từng $V_\alpha \in V$, ta định nghĩa $m : V_\alpha \to S$ và gọi $m$ là hàm ngữ nghĩa của $V_\alpha$, với $s \in S$ là một câu diễn dịch ứng với $v_\alpha \in V_\alpha$.
+	Xét $\alpha \in \set{0,1}^n$, ứng với từng $V_\alpha \in V$, ta định nghĩa $m : V_\alpha \to S$ và gọi $m$ là \textbf{Hàm ngữ nghĩa} của $V_\alpha$, với $s \in S$ là một câu diễn dịch ứng với $v_\alpha \in V_\alpha$.
 \end{definition}
+\begin{definition}[Không gian lĩnh vực]
+	Xét $\beta \in \{0,1\}^{\frac{n}{2}}$ với $n$ là độ phân giải vận số. Ta gọi phân hoạch của không gian vũ trụ $\Omega$ thành $2^{\frac{n}{2}}$ tập con rời nhau là \textbf{Không gian lĩnh vực}, ký hiệu là $\mathcal{C}$. 
+	
+	Mỗi tập con $C_\beta \in \mathcal{C}$ đại diện cho một lĩnh vực đời sống, được xác định bởi:
+	$$C_\beta := \prod_{i=1}^{\frac{n}{2}} \Omega_{d(b_i)}$$
+	
+	Không gian lĩnh vực $\mathcal{C} = \left\{ C_\beta \mid \beta \in \{0,1\}^{\frac{n}{2}} \right\}$ thỏa mãn hệ tiên đề phân hoạch:
+	\begin{enumerate}[label=\roman*)]
+		\item $\bigcup_{\beta \in \{0,1\}^{\frac{n}{2}}} C_\beta = \Omega$
+		\item $C_{\beta_1} \cap C_{\beta_2} = \emptyset \quad \forall \beta_1 \neq \beta_2$
+	\end{enumerate}
+\end{definition}
+\chapter{Mô hình vận số học với độ phân giải vận số $n=8$}
+
+Trở lại với hệ thống lý thuyết tổng quan đã được thiết lập ở Chương 1, việc lựa chọn một độ phân giải cụ thể đóng vai trò quyết định trong việc cân bằng giữa độ chi tiết của mô hình và tính tối ưu trong tính toán. Trong chương này, chúng ta nghiên cứu mô hình Vận số học ứng với độ phân giải vận số $n = 8$. 
+
+Việc chọn $n = 8$ mang lại một cấu trúc nhị phân đối xứng và tối ưu về mặt thông tin:
+
+\begin{itemize}
+	\item \textbf{Không gian sao ($V$):} Với $n = 8$, lực lượng của không gian sao đạt $\text{card } V = 2^8 = 256$ sao vận số. Mỗi sao $V_\alpha$ được mã hóa bằng một chuỗi nhị phân độ dài 8, biểu thị một trạng thái tương tác vi mô của vũ trụ.
+	\item \textbf{Không gian lĩnh vực ($\mathcal{C}$):} Với độ phân giải địa bàn $k = \frac{n}{2} = 4$, địa bàn nhân sinh được phân hoạch thành đúng $\text{card } \mathcal{C} = 2^4 = 16$ lĩnh vực đời sống. Độ dài chuỗi mã hóa 4 bit cho phép phân loại vĩ mô các bối cảnh nhân sinh theo hệ tọa độ 4 chiều độc lập.
+\end{itemize}
+
+Ngoài ra, việc mã hóa dạng 8 bit ($1\text{ byte}$) cho phép mô hình Vận số học dễ dàng tích hợp và xử lý trực tiếp trên các hệ thống máy tính hiện đại, chuyển hóa hoàn toàn bộ môn dự trắc cổ phương thành một thuật toán xử lý dữ liệu cấu trúc rõ ràng. 
+
+Chương này sẽ tập trung định danh chi tiết 16 lĩnh vực đời sống, phân cấu trúc 256 sao vận số, và xây dựng các hàm ánh xạ phân bổ cùng toán tử tương tác giữa Sao và Cung trên lá số.
+\section{Giải mã Không gian Lĩnh vực}
+
+Với độ phân giải $n=8$, Không gian lĩnh vực $\mathcal{C}$ gồm đúng $2^4 = 16$ tập hợp con rời nhau. Để xây dựng hàm ngữ nghĩa $m: C_\beta \rightarrow S$ một cách tự nhiên và loại bỏ tính khiên cưỡng, ta mô hình hóa mỗi chuỗi mã nhị phân $\beta = (b_1, b_2, b_3, b_4) \in \{0,1\}^4$ thành một vị trí trong hệ tọa độ nhân sinh 4 chiều.
+
+\subsection{Hệ trục tọa độ nhị phân nhân sinh}
+
+Mỗi bit $b_i$ trong chuỗi $\beta$ đại diện cho một phép phân tách nhị phân (Binary Dichotomy) đối với không gian trải nghiệm đời sống:
+
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Bit $b_1$ -- Chiều Không gian trải nghiệm (Internal vs. External):}
+	\begin{itemize}
+		\item $b_1 = 0$ ($\Omega_-$): Hướng nội, thuộc về bản thể, tinh thần, nền tảng ẩn hoặc đời sống riêng tư.
+		\item $b_1 = 1$ ($\Omega_+$): Hướng ngoại, thuộc về bối cảnh vật lý, môi trường công cộng và xuất lộ ra bên ngoài.
+	\end{itemize}
+	
+	\item \textbf{Bit $b_2$ -- Chiều Chủ thể tương tác (Self vs. Others):}
+	\begin{itemize}
+		\item $b_2 = 0$ ($\Omega_-$): Cá nhân, nội tại chủ quan, tập trung vào bản thân chủ thể.
+		\item $b_2 = 1$ ($\Omega_+$): Khách thể, mối tương tác đối ngoại, mối quan hệ với các đối tượng khác.
+	\end{itemize}
+	
+	\item \textbf{Bit $b_3$ -- Chiều Nguồn gốc tính chất (Natural vs. Structured):}
+	\begin{itemize}
+		\item $b_3 = 0$ ($\Omega_-$): Tự nhiên, bẩm sinh, huyết thống, cảm xúc hữu cơ hoặc di truyền.
+		\item $b_3 = 1$ ($\Omega_+$): Cấu trúc, tự tạo, xã hội hóa, quy ước, thể chế hoặc thành tựu tích lũy.
+	\end{itemize}
+	
+	\item \textbf{Bit $b_4$ -- Chiều Trạng thái vận động (Static vs. Dynamic):}
+	\begin{itemize}
+		\item $b_4 = 0$ ($\Omega_-$): Tĩnh, nền tảng, trạng thái tích lũy, tài nguyên hoặc tiềm năng.
+		\item $b_4 = 1$ ($\Omega_+$): Động, hành động, biến đổi, sự vận hành hoặc công danh/sự nghiệp.
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Ma trận 16 Lĩnh vực Nhân sinh}
+
+Mỗi cung $C_\beta \in \mathcal{C}$ là kết quả tích Descartes của 4 không gian thành phần tương ứng với chuỗi bit $\beta$. Bảng \ref{tab:16_linh_vuc} định danh chính xác ngữ nghĩa của 16 lĩnh vực đời sống thu được từ tổ hợp các trục tọa độ.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Bảng mã hóa ngữ nghĩa 16 Lĩnh vực Nhân sinh trong không gian $\mathcal{C}$}
+	\label{tab:16_linh_vuc}
+	\small
+	\begin{tabular}{ccll}
+		\toprule
+		\textbf{STT} & \textbf{Mã $\beta$} & \textbf{Tọa độ Nhị phân $(b_1b_2b_3b_4)$} & \textbf{Lĩnh vực Đời sống (Ngữ nghĩa $m(C_\beta)$)} \\
+		\midrule
+		0  & \texttt{0000} & Nội -- Chủ -- Tự nhiên -- Tĩnh & Tâm trí \& Căn tính (Tiềm thức, tư tưởng) \\
+		1  & \texttt{0001} & Nội -- Chủ -- Tự nhiên -- Động & Tâm lý \& Phản ứng (Cảm xúc nội tại, động lực) \\
+		2  & \texttt{0010} & Nội -- Chủ -- Cấu trúc -- Tĩnh & Tài sản Nội tại (Tri thức, trải nghiệm tích lũy) \\
+		3  & \texttt{0011} & Nội -- Chủ -- Cấu trúc -- Động & Rèn luyện \& Thói quen (Ý chí, sự tu tập cá nhân) \\
+		4  & \texttt{0100} & Nội -- Khách -- Tự nhiên -- Tĩnh & Huyết thống Nội gia (Gia đình gốc, tổ tiên) \\
+		5  & \texttt{0101} & Nội -- Khách -- Tự nhiên -- Động & Tình cảm Đời tư (Mối quan hệ thân mật, tình yêu) \\
+		6  & \texttt{0110} & Nội -- Khách -- Cấu trúc -- Tĩnh & Gia sản Chung (Tài chính gia đình, thừa kế) \\
+		7  & \texttt{0111} & Nội -- Khách -- Cấu trúc -- Động & Nghĩa vụ Gia đạo (Trách nhiệm với người thân) \\
+		8  & \texttt{1000} & Ngoại -- Chủ -- Tự nhiên -- Tĩnh & Thân thể \& Thể chất (Cơ thể vật lý, gen) \\
+		9  & \texttt{1001} & Ngoại -- Chủ -- Tự nhiên -- Động & Hành vi \& Di chuyển (Xuất ngoại, tương tác môi trường) \\
+		10 & \texttt{1010} & Ngoại -- Chủ -- Cấu trúc -- Tĩnh & Tài chính Cá nhân (Tiền bạc, của cải vật chất) \\
+		11 & \texttt{1011} & Ngoại -- Chủ -- Cấu trúc -- Động & Sự nghiệp \& Công danh (Chức vụ, công việc) \\
+		12 & \texttt{1100} & Ngoại -- Khách -- Tự nhiên -- Tĩnh & Mạng lưới Xã hội (Bạn bè, cộng đồng tự nhiên) \\
+		13 & \texttt{1101} & Ngoại -- Khách -- Tự nhiên -- Động & Giao tiếp \& Đối ngoại (Quan hệ công cộng) \\
+		14 & \texttt{1110} & Ngoại -- Khách -- Cấu trúc -- Tĩnh & Đối tác \& Hợp đồng (Liên minh làm ăn, pháp lý) \\
+		15 & \texttt{1111} & Ngoại -- Khách -- Cấu trúc -- Động & Vị thế Xã hội \& Ảnh hưởng (Thành tựu cộng đồng) \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{md}[Tính đầy đủ của Không gian Lĩnh vực]
+	Do $b_i \in \{0,1\}$ đại diện cho hai nửa phân hoạch $\Omega_-$ và $\Omega_+$ của vũ trụ $\Omega$, ma trận 16 cung $C_\beta$ phủ kín toàn bộ mọi khả năng trải nghiệm nhân sinh mà không bị chồng lấp hay bỏ sót bất kỳ bối cảnh nào.
+\end{md}
+
+\subsection{Phân tích Ngữ nghĩa Cấu trúc của Không gian Lĩnh vực}
+
+Thay vì gán gượng ép các tên gọi tĩnh cố định cho từng tập hợp $C_\beta$, bản chất của Vận số học cho phép ta **dựng hàm ngữ nghĩa $m(C_\beta)$ thông qua phương pháp phân tích cấu trúc nhị phân** của chuỗi $\beta = (b_1, b_2, b_3, b_4) \in \{0,1\}^4$. 
+
+Mỗi chuỗi $\beta$ không phải là một nhãn tên, mà là một **véc-tơ thuộc tính** quy định xu hướng vận động, tương tác và biểu hiện của mọi hiện tượng thuộc lĩnh vực đó.
+
+\subsubsection{Cơ chế sinh ngữ nghĩa từ véc-tơ thuộc tính}
+
+Hàm ngữ nghĩa $m: \mathcal{C} \rightarrow \mathcal{P}(S)$ (với $\mathcal{P}(S)$ là tập các phát biểu diễn dịch) được cấu thành dựa trên sự tổng hòa các đặc tính:
+
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Tính chất Thuần (Pure States) và Độ lệch Âm/Dương:}
+	\begin{itemize}
+		\item Mã $\beta = (0,0,0,0)$ (Trạng thái \textbf{Thuần Âm}): Đại diện cho không gian mang tính thu hút toàn diện, tích tụ tuyệt đối, hướng nội, tĩnh tại, tiếp nhận và tiềm ẩn. Mọi hiện tượng mang bản chất tự thân, lắng đọng, tiềm thức hay nền tảng sâu nhất của đời sống đều hội tụ về tập $C_{(0,0,0,0)}$.
+		\item Mã $\beta = (1,1,1,1)$ (Trạng thái \textbf{Thuần Dương}): Đại diện cho không gian phát tán toàn diện, xuất lộ tuyệt đối, hướng ngoại, bùng nổ, vận động và công khai. Mọi hiện tượng mang tính tương tác xã hội đỉnh cao, ảnh hưởng diện rộng hay sự bộc phát ra bên ngoài đều hội tụ về tập $C_{(1,1,1,1)}$.
+	\end{itemize}
+	
+	\item \textbf{Cấu trúc Đối kháng và Xung chiếu ($\oplus$):}
+	Hai lĩnh vực $C_\beta$ và $C_{\beta'}$ được gọi là đối kháng hoàn toàn về mặt ngữ nghĩa nếu $\beta' = \overline{\beta}$ (nghĩa là $\beta \oplus \beta' = (1,1,1,1)$). Sự tương tác giữa hai lĩnh vực này phản ánh mối quan hệ cân bằng Âm -- Dương giữa cái tiềm ẩn bên trong và cái bộc lộ ra bên ngoài.
+	
+	\item \textbf{Tính bao phủ toàn diện (Semantic Completeness):}
+	Do $2^4 = 16$ chuỗi nhị phân phủ kín mọi tổ hợp trạng thái Âm/Dương trên 4 trục thuộc tính, bất kỳ sự việc, hoàn cảnh hay đối tượng nào trong cuộc sống thực tế đều có thể được chiếu (project) chính xác vào đúng tập $C_\beta$ tương ứng dựa trên véc-tơ thuộc tính của nó.
+\end{enumerate}
+
+\begin{remark}[Tính động của Hàm ngữ nghĩa]
+	Diễn dịch ngôn ngữ $m(C_\beta)$ không bị giới hạn bởi các khái niệm nhân sinh truyền thống (như Tài bạch, Quan lộc, Phu thê), mà mở rộng thành một công cụ phân tích đa chiều: Bất kỳ khía cạnh nào của đời sống — dù là trong bối cảnh xã hội cổ đại hay hiện đại — đều là một phần tử $\omega \in \Omega$ thuộc về đúng một trong 16 trạng thái cấu trúc $C_\beta$.
+\end{remark}
 \end{document}
