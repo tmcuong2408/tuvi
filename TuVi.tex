@@ -58,9 +58,9 @@
 \maketitle
 \newpage
 \begin{abstract}
-	Từ ngàn xưa, Tử Vi được xem là một môn khoa học dự trắc cổ phương Đông, ứng dụng các quy luật thiên văn và lịch pháp để giải mã quỹ đạo đời người qua hệ thống lá số. Tuy nhiên, nếu gác lại lớp vỏ bọc huyền học và nhìn nhận dưới lăng khúc toán học hiện đại, hệ thống này thực chất là một mô hình mã hóa thông tin vô cùng chặt chẽ.
+	Từ ngàn xưa, vận số được xem là một môn khoa học dự trắc cổ phương Đông, ứng dụng các quy luật thiên văn và lịch pháp để giải mã quỹ đạo đời người qua hệ thống lá số. Tuy nhiên, nếu gác lại lớp vỏ bọc huyền học và nhìn nhận dưới lăng khúc toán học hiện đại, hệ thống này thực chất là một mô hình mã hóa thông tin vô cùng chặt chẽ.
 	
-	Tài liệu này xây dựng và hệ thống hóa lại bộ môn Tử Vi dưới góc độ toán học, từ đó định danh nó dưới một tên gọi mới: {Vận số học}.
+	Tài liệu này xây dựng và hệ thống hóa lại bộ môn vận số dưới góc độ toán học, từ đó định danh nó dưới một tên gọi mới: {Vận số học}.
 	
 	Trong không gian của Vận số học, mỗi lá số không phải là một định mệnh thần bí, mà là một tập hợp vũ trụ được cấu thành từ các tập con phân hoạch (hệ thống 12 cung địa bàn) và các phần tử tương tác (tập hợp các vì sao). Bằng cách sử dụng ngôn ngữ của Lý thuyết tập hợp—như phép ánh xạ từ thời điểm sinh vào không gian lá số, phép giao tạo nên các cách cục, phép hợp giữa các cung liên kết, hay hàm số mô tả sự dịch chuyển của vận hạn theo thời gian—Vận số học bóc tách toàn bộ lớp sương mù tín ngưỡng để trả về bản chất cốt lõi: một hệ thống thuật toán phân tích dữ liệu không gian - thời gian của cổ nhân, được số hóa và cấu trúc hóa dưới tư duy logic thuần túy.
 \end{abstract}
@@ -68,66 +68,46 @@
 \chapter{Nguyên lý âm dương}
 \section{Tiên đề vũ trụ}
 
-Gọi $\Omega$ là tập tất cả các vật trong vũ trụ. Ta giả định tồn tại một phép gán $\Phi  : \Omega \to \{-1,1 \}$ thỏa mãn: $$\Phi(\omega) := \begin{cases}
-		1 \text{ nếu } \omega \in \Omega_1 \\ 
-		-1 \text{ nếu } \omega \in \Omega_0 \\	
-\end{cases}
-$$
+Gọi $\Omega$ là tập tất cả các vật trong vũ trụ. Ta đưa ra tiên đề hệ tiên đề :
+\begin{enumerate}
+	\item Tiên đề phân loại.Mọi vật $\omega \in \Omega$ thì $\omega \in \Omega_+ $ hoặc $ \omega \in \Omega_-$ và tồn tại một ánh xạ  $\Phi  : \Omega \to \{-1,1 \}$ thỏa mãn: $$\Phi(\omega) := \begin{cases}
+		1 \text{ nếu } \omega \in \Omega_+ \\ 
+		-1 \text{ nếu } \omega \in \Omega_- \\	
+	\end{cases}
+	$$
+	\item  Tiên đề cân bằng: \[
+	\sum_{\omega \in \Omega}^{}{\Phi(\omega)} = 0
+	\]
+	\item Tiên đề đầy đủ: \[\Omega = \Omega_- \cup \Omega_+\]
+	\item Tiên đề tách: \[\Omega_- \cap \Omega_+	= \emptyset\]
+	
+\end{enumerate}
 Trong đó 
 \begin{align*}
-	&\Omega_1:= \{\omega \in \Omega :  \omega \text{ mang tính dương}\} \\
-	&\Omega_0:= \{\omega \in \Omega :  \omega \text{ mang tính âm}\} \\
-	&\Omega = \Omega_0 \cup \Omega_1 \\
-	&\Omega_0 \cap \Omega_1	= \emptyset
+	&\Omega_+:= \{\omega \in \Omega :  \omega \text{ mang tính dương}\} \\
+	&\Omega_-:= \{\omega \in \Omega :  \omega \text{ mang tính âm}\} \\
 \end{align*}
-Chẳng hạn mặt trời, đàn ông  $\in \Omega_1$. Mặt trăng, đàn bà  $\in \Omega_0$.
-Ta đưa ra tiên đề về tính cân bằng của vũ trụ: 
-\[
-	\sum_{\omega \in \Omega}^{}{\Phi(\omega)} = 0
-\]
-\begin{definition}[Sao tử vi]
-	Từ $n$ nguyên dương cho trước thì thế giới có thể được phân hoạch thành $2^n$ phần rời nhau gọi là các sao tử vi. Mỗi sao được đánh số thứ tự bằng hệ nhị phân ký hiệu $\Omega_\alpha$ với $\alpha \in 2^n$ và $\alpha$ có biểu diễn là nhị phân. Cụ thể, chuỗi nhị phân $\alpha = (a_1, a_2, \dots, a_n) \in \{0, 1\}^n$ xác định một tập hợp phần tử trong không gian tích Descartes:$$\Omega_\alpha := \Omega_{a_1} \times \Omega_{a_2} \times \dots \times \Omega_{a_n} = \prod_{i=1}^{n} \Omega_{a_i}$$thỏa mãn hai điều kiện phân hoạch:
+\begin{definition}[Độ phân giải vận số]
+	Từ $n$ nguyên dương cho trước thì $\Omega$ có thể được phân hoạch thành $2^n$ phần rời nhau với $ n \in \mathbb{N^*}$. Ta gọi $n$ là độ phân giải vận số.
+\end{definition}
+\begin{remark}
+	Xuyên suốt tài liệu này ta giả định độ phân giải vận số là $n$.
+\end{remark}
+\begin{definition}[Sao vận số]
+	Mỗi sao được đánh số thứ tự bằng hệ nhị phân ký hiệu $V_\alpha$ với $\alpha \in \set{0,1}^n$. Cụ thể, chuỗi nhị phân $\alpha = (a_1, a_2, \dots, a_n) \in \{0, 1\}^n$ xác định một tập hợp phần tử trong không gian tích Descartes:$$V_\alpha := \Omega_{a_1} \times \Omega_{a_2} \times \dots \times \Omega_{a_n} = \prod_{i=1}^{n} \Omega_{a_i}$$thỏa mãn các điều kiện:
 	\begin{enumerate}
-		\item Tính rời nhau: $\Omega_\alpha \cap \Omega_\beta = \emptyset$ với mọi $\alpha \neq \beta$.
-		\item Tính trọn vẹn: $\bigcup_{\alpha \in \{0, 1\}^n} \Omega_\alpha = \Omega$.
+		\item $\Omega_0 = \Omega_-, \Omega_1 = \Omega_+$.
+		\item Tính rời nhau: $V_\alpha \cap V_\beta = \emptyset$ với mọi $\alpha \neq \beta$.
+		\item Tính trọn vẹn: $\bigcup_{\alpha \in \{0, 1\}^n} V_\alpha = \Omega$.
 	\end{enumerate}
+\end{definition}
+\begin{definition}[Tượng]
+	Xét $\alpha \in \set{0,1}^n$, ta gọi mỗi phần tử $v_\alpha \in V_\alpha \in V$ là một tượng.
+\end{definition}
+\begin{definition}[Không gian sao]
+	Tập tất cả các sao vận số ứng với độ phân giải $n$ được gọi là không gian sao, được ký hiệu là $V$. Dễ thấy $\card V = 2^n$.
 \end{definition}
 \begin{definition}[Hàm ngữ nghĩa]
-	Với $n$ nguyên dương cho trước, ta định nghĩa $\Omega_\alpha^m : \Omega_\alpha \to \Omega$ với $\Omega_\alpha$ với $\alpha \in 2^n$ và $\Omega_\alpha^m(x)$ được chọn tùy ý một phần tử thuộc tập $\Omega$.
+	Xét $\alpha \in \set{0,1}^n$, ứng với từng $V_\alpha \in V$, ta định nghĩa $m : V_\alpha \to S$ và gọi $m$ là hàm ngữ nghĩa của $V_\alpha$, với $s \in S$ là một câu diễn dịch ứng với $v_\alpha \in V_\alpha$.
 \end{definition}
-\begin{example}[Ứng dụng hàm ngữ nghĩa trên tập tương tác $\Omega_{10}$]
-	Xét không gian nhị cấp ($n = 2$) với tập tương tác $\Omega_{10} = \Omega_1 \times \Omega_0$. Mỗi phần tử $x \in \Omega_{10}$ là một cặp tọa độ $x = (\omega_1, \omega_0)$, trong đó $\omega_1 \in \Omega_1$ (mang thuộc tính Dương) và $\omega_0 \in \Omega_0$ (mang thuộc tính Âm). 
-	
-	Hàm ngữ nghĩa $\Omega_{10}^m(x)$ thực hiện ánh xạ từ tập tương tác $\Omega_{10}$ sang các Tượng (ngữ nghĩa) thực tại nhân sinh tùy theo ngữ cảnh mô hình hóa:
-	
-	\begin{enumerate}
-		\item \textbf{Về Bản dạng và Giới tính:} \\ Với $x = (\text{nam giới sinh học}, \text{tâm lý/bản dạng nữ}) \in \Omega_{10}$, hàm ngữ nghĩa gán thành Tượng chuyển giới từ nam sang nữ (Transgender Female):
-		\[
-		\Omega_{10}^m(\text{nam}, \text{nữ}) = \text{Transgender (Nam } \to \text{ Nữ)}
-		\]
-		
-		\item \textbf{Về Hiện tượng Thiên văn/Tự nhiên:} \\ Với $x = (\text{mặt trời}, \text{sự che khuất/bóng tối}) \in \Omega_{10}$, hàm ngữ nghĩa ánh xạ thành Tượng Nhật thực hoặc Hoàng hôn (trạng thái Dương khí bị thu nén/lấn át bởi Âm khí):
-		\[
-		\Omega_{10}^m(\text{mặt trời}, \text{bóng tối}) = \text{Nhật thực / Hoàng hôn}
-		\]
-		
-		\item \textbf{Về Biến thái Vận số (Tứ Hóa):} \\ Với $x = (\text{khởi phát/sức mạnh}, \text{sự khống chế/thu giữ}) \in \Omega_{10}$, hàm ngữ nghĩa biểu diễn Tượng Hóa Quyền (trạng thái Dương biến Âm — uy lực bộc phát bị nén lại thành quyền lực và sự áp đặt):
-		\[
-		\Omega_{10}^m(\text{sức mạnh}, \text{khống chế}) = \text{Tượng Hóa Quyền}
-		\]
-	\end{enumerate}
-\end{example}
-\begin{example}[Hàm ngữ nghĩa trên không gian thuần Âm $\Omega_{00}$]
-	Xét không gian nhị cấp $\Omega_{00} = \Omega_0 \times \Omega_0$ đại diện cho sự tương tác giữa hai yếu tố thuộc tập Âm $\Omega_0$. Tùy thuộc vào phần tử đầu vào $x = (\omega_1, \omega_2) \in \Omega_{00}$ và ngữ cảnh truy vấn, hàm ngữ nghĩa $\Omega_{00}^m(x)$ thực hiện các gán Tượng tương ứng:
-	
-	\[
-	\Omega_{00}^m(x) = \begin{cases} 
-		\text{Thục nữ / Nữ Cisgender} & \text{nếu } x = (\text{nữ sinh học}, \text{tính nữ}) \\
-		\text{Đồng tính nữ (Lesbian)} & \text{nếu } x = (\text{nữ giới}, \text{hướng tình cảm nữ}) \\
-		\text{Quan hệ bạn bè / Đối tác nữ} & \text{nếu } x = (\text{chủ thể nữ}, \text{khách thể nữ})
-	\end{cases}
-	\]
-\end{example}
-\chapter{Ngũ hành}
-\chapter{Sao tử vi}
 \end{document}
