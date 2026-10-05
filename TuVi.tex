@@ -1,16 +1,16 @@
 \RequirePackage{silence}
-\WarningsOff % Tắt toàn bộ cảnh báo từ tất cả các gói
-\ErrorsOff   % (Cẩn thận) Chỉ dùng nếu bạn chắc chắn code không có lỗi logic nặng
+\WarningsOff % Turn off all warnings from packages
+\ErrorsOff   % Use with caution
 \documentclass[a4paper,14pt, twoside]{memoir}
 \usepackage{booktabs}
 \usepackage[utf8x]{inputenc}
-\usepackage[vietnamese]{babel}    
+\usepackage[english]{babel}    
 %\usepackage{showframe}
 \usepackage{url}
 \usepackage{microtype}
 \usepackage{color}
 \usepackage{amsmath}
-\usepackage{amsthm}         % Cung cấp môi trường proof
+\usepackage{amsthm}         % Provides proof environment
 \usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{enumitem}
@@ -21,12 +21,12 @@
    filecolor=magenta,
    urlcolor=cyan
 }
-\newtheorem{definition}{Định nghĩa}[chapter]
-\newtheorem{md}{Mệnh đề}[chapter]
-\newtheorem{theorem}{Định lý}[chapter]
-\newtheorem{remark}{Chú ý}
-\newtheorem*{chungminh}{Chứng minh}
-\newtheorem{example}{Ví dụ}[chapter]
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{md}{Proposition}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{remark}{Remark}
+\newtheorem*{chungminh}{Proof}
+\newtheorem{example}{Example}[chapter]
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\w}{w}
 \DeclareMathOperator{\card}{card}
@@ -34,203 +34,208 @@
 \DeclareMathOperator{\pgr}{pgr}
 \DeclareMathOperator{\scale}{scale}
 \DeclareMathOperator{\rad}{rad}
-\title{\MakeUppercase{Vận Số Học}}
-\author{Tác giả: Trần Mạnh Cường}
-\date{Cập nhật lần cuối: \today}
-\usepackage{mathtools} % Bao gồm amsmath nhưng tối ưu và nhiều tính năng hơn
-\usepackage{amssymb}   % Cần thiết để gọi font chữ mathbb
-% Tạo command mới
-\newcommand{\set}[1]{\left\{#1\right\}} % tập hợp
-\newcommand{\tbd}[1]{\mathcal{#1}} % tập bất định
-\newcommand{\s}[1]{\set{#1}_\mathrm{u}} % số bất định
-\newcommand{\kbd}[1]{{#1}_\mathrm{u}} % khoảng bất định
-\newcommand{\bd}[1]{\left(#1\right)_\mathrm{u}} % biểu thức bất định
+\title{\MakeUppercase{Formal Destiny Dynamics}}
+\author{Author: Tran Manh Cuong}
+\date{Last updated: \today}
+\usepackage{mathtools} % Optimized version of amsmath with additional features
+\usepackage{amssymb}   % Required for mathbb fonts
+% Custom commands
+\newcommand{\set}[1]{\left\{#1\right\}} % set
+\newcommand{\tbd}[1]{\mathcal{#1}} % uncertain set
+\newcommand{\s}[1]{\set{#1}_\mathrm{u}} % uncertain number
+\newcommand{\kbd}[1]{{#1}_\mathrm{u}} % uncertain interval
+\newcommand{\bd}[1]{\left(#1\right)_\mathrm{u}} % uncertain expression
 \newcommand{\tsbd}[1]{\mathbf{U}(\mathbb{#1})}
-\newcommand{\tsbdts}[1]{\mathbf{U}_{\w}(\mathbb{#1})} % tập số bất định
-\newcommand{\ddclmd}{\mu} % độ đo chân lý của mệnh đề
-\newcommand{\ts}[1]{\w_{#1}} % Trọng số
-\newcommand{\gtcl}[2]{\left(#1\right)_{#2}} % độ đo chân lý
-\newcommand{\gr}[1]{gr(#1)} % đồ thị của hàm
-\newcommand{\hpw}[2]{#1_1\left(#2\right)} % hàm point-wise
-\newcommand{\hbd}[2]{#1_m\left(#2\right)} % hàm bất định
-\newcommand{\eq}[1]{\left[#1\right]_{eq}} % toán tử eqs
-\newcommand{\kgdd}[1]{\left(#1\right)_1} % toán tử thực hiện trên pointwise
+\newcommand{\tsbdts}[1]{\mathbf{U}_{\w}(\mathbb{#1})} % set of uncertain numbers
+\newcommand{\ddclmd}{\mu} % truth-value measure of a proposition
+\newcommand{\ts}[1]{\w_{#1}} % Weight
+\newcommand{\gtcl}[2]{\left(#1\right)_{#2}} % truth measure
+\newcommand{\gr}[1]{gr(#1)} % graph of a function
+\newcommand{\hpw}[2]{#1_1\left(#2\right)} % point-wise function
+\newcommand{\hbd}[2]{#1_m\left(#2\right)} % uncertain function
+\newcommand{\eq}[1]{\left[#1\right]_{eq}} % eqs operator
+\newcommand{\kgdd}[1]{\left(#1\right)_1} % point-wise operator
 \begin{document}
 \maketitle
 \newpage
 \begin{abstract}
-	Từ ngàn xưa, vận số được xem là một môn khoa học dự trắc cổ phương Đông, ứng dụng các quy luật thiên văn và lịch pháp để giải mã quỹ đạo đời người qua hệ thống lá số. Tuy nhiên, nếu gác lại lớp vỏ bọc huyền học và nhìn nhận dưới lăng khúc toán học hiện đại, hệ thống này thực chất là một mô hình mã hóa thông tin vô cùng chặt chẽ.
+	Since ancient times, traditional destiny analysis has been regarded as an Eastern predictive discipline, applying astronomical and calendrical laws to decode human life trajectories through horoscopic charts. However, stripping away its mystical veil and examining it through the lens of modern mathematics reveals that this system is fundamentally a remarkably rigorous information encoding model.
 
-	Tài liệu này xây dựng và hệ thống hóa lại bộ môn vận số dưới góc độ toán học, từ đó định danh nó dưới một tên gọi mới: {Vận số học}.
+	This monograph formalizes and systematizes the field of destiny analysis from a mathematical perspective, defining it under a novel designation: {Formal Destiny Dynamics}.
 
-	Trong không gian của Vận số học, mỗi lá số không phải là một định mệnh thần bí, mà là một tập hợp vũ trụ được cấu thành từ các tập con phân hoạch (hệ thống 12 cung địa bàn) và các phần tử tương tác (tập hợp các vì sao). Bằng cách sử dụng ngôn ngữ của Lý thuyết tập hợp—như phép ánh xạ từ thời điểm sinh vào không gian lá số, phép giao tạo nên các cách cục, phép hợp giữa các cung liên kết, hay hàm số mô tả sự dịch chuyển của vận hạn theo thời gian—Vận số học bóc tách toàn bộ lớp sương mù tín ngưỡng để trả về bản chất cốt lõi: một hệ thống thuật toán phân tích dữ liệu không gian - thời gian của cổ nhân, được số hóa và cấu trúc hóa dưới tư duy logic thuần túy.
+	Within the mathematical space of Formal Destiny Dynamics, an individual chart is not a mystical fate, but rather a universal universe composed of partitioned subsets (the 12-palace domain system) and interacting elements (the set of celestial stars). By employing the language of Set Theory—such as mappings from birth times into chart space, intersections representing structural configurations (patterns), unions connecting linked domains, or functions describing the temporal shifts of life phases—Formal Destiny Dynamics strips away religious ambiguity to restore its core essence: an ancient spatial-temporal data analysis algorithm, digitized and structured under pure logical reasoning.
 \end{abstract}
 \tableofcontents
-\chapter{Nền tảng của \textbf{vận số học}}
-\section{Tiên đề vận số học}
+\chapter{Foundations of Formal Destiny Dynamics}
+\section{Axioms of Destiny Dynamics}
 
-Gọi $\Omega$ là tập tất cả các vật trong vũ trụ. Ta đưa ra tiên đề hệ tiên đề :
+Let $\Omega$ be the universal set of all objects in the universe. We establish the following axiomatic system:
 \begin{enumerate}
-	\item Tiên đề phân loại.Mọi vật $\omega \in \Omega$ thì $\omega \in \Omega_+ $ hoặc $ \omega \in \Omega_-$ và tồn tại một ánh xạ  $\Phi  : \Omega \to \{-1,1 \}$ thỏa mãn: $$\Phi(\omega) := \begin{cases}
-			      1 \text{ nếu } \omega \in \Omega_+  \\
-			      -1 \text{ nếu } \omega \in \Omega_- \\
+	\item \textbf{Axiom of Classification.} For every element $\omega \in \Omega$, either $\omega \in \Omega_+$ or $\omega \in \Omega_-$, and there exists a mapping $\Phi : \Omega \to \{-1,1\}$ satisfying:
+	      $$\Phi(\omega) := \begin{cases}
+			      1 & \text{if } \omega \in \Omega_+  \\
+			      -1 & \text{if } \omega \in \Omega_- \\
 		      \end{cases}
 	      $$
-	\item  Tiên đề cân bằng: \[
+	\item \textbf{Axiom of Equilibrium:} \[
 		      \sum_{\omega \in \Omega}^{}{\Phi(\omega)} = 0
 	      \]
-	\item Tiên đề đầy đủ: \[\Omega = \Omega_- \cup \Omega_+\]
-	\item Tiên đề tách: \[\Omega_- \cap \Omega_+	= \emptyset\]
+	\item \textbf{Axiom of Completeness:} \[\Omega = \Omega_- \cup \Omega_+\]
+	\item \textbf{Axiom of Separation:} \[\Omega_- \cap \Omega_+ = \emptyset\]
 
 \end{enumerate}
-Trong đó
+where
 \begin{align*}
-	 & \Omega_+:= \{\omega \in \Omega :  \omega \text{ mang tính dương}\} \\
-	 & \Omega_-:= \{\omega \in \Omega :  \omega \text{ mang tính âm}\}    \\
+	 & \Omega_+:= \{\omega \in \Omega : \omega \text{ possesses Yang polarity}\} \\
+	 & \Omega_-:= \{\omega \in \Omega : \omega \text{ possesses Yin polarity}\}    \\
 \end{align*}
-\section{Các khái niệm}
-\begin{definition}[Độ phân giải vận số]
-	Từ $n$ nguyên dương cho trước sao cho $\log_2(n)$ nguyên, tập $\Omega$ có thể được phân hoạch thành $2^n$ phần rời nhau và ta gọi $n$ là \textbf{độ phân giải vận số}.
+
+\section{Core Concepts}
+\begin{definition}[Destiny Resolution]
+	Given a positive integer $n$ such that $\log_2(n)$ is an integer, the universal set $\Omega$ can be partitioned into $2^n$ disjoint subsets. We call $n$ the \textbf{destiny resolution}.
 \end{definition}
 \begin{remark}
-	Xuyên suốt tài liệu này ta giả định độ phân giải vận số là số nguyên dương chẵn $n$.
+	Throughout this document, we assume that the destiny resolution $n$ is an even positive integer.
 \end{remark}
-\begin{definition}[Hàm tính chất]
-	Ta gọi hàm $d : \set{0,1} \rightarrow \set{+,-}$ với $d(0) = -, d(1) = +$ là \textbf{hàm tính chất}.
+\begin{definition}[Polarity Function]
+	We define the function $d : \set{0,1} \rightarrow \set{+,-}$ with $d(0) = -$ and $d(1) = +$ as the \textbf{polarity function}.
 \end{definition}
-\begin{definition}[Sao vận số]
-	Mỗi sao được đánh số thứ tự bằng hệ nhị phân ký hiệu $V_\alpha$ với $\alpha \in \set{0,1}^n$. Cụ thể, chuỗi nhị phân $\alpha = (a_1, a_2, \dots, a_n) \in \{0, 1\}^n$ xác định một tập hợp phần tử trong không gian tích Descartes:$$V_\alpha := \prod_{i=1}^{n} \Omega_{d(a_i)}$$
-	Khi đó $V_\alpha$ được gọi là một \textbf{sao vận số}.
+\begin{definition}[Destiny Star]
+	Each star is indexed in binary notation denoted by $V_\alpha$ where $\alpha \in \set{0,1}^n$. Specifically, a binary string $\alpha = (a_1, a_2, \dots, a_n) \in \{0, 1\}^n$ uniquely defines a subset in the Cartesian product space:
+	$$V_\alpha := \prod_{i=1}^{n} \Omega_{d(a_i)}$$
+	In this formulation, $V_\alpha$ is defined as a \textbf{destiny star}.
 \end{definition}
-\begin{definition}[Tượng]
-	Xét $\alpha \in \set{0,1}^n$, ta gọi mỗi phần tử $v_\alpha \in V_\alpha \in V$ là một \textbf{tượng}.
+\begin{definition}[Phenomenal Image]
+	For $\alpha \in \set{0,1}^n$, each element $v_\alpha \in V_\alpha \in V$ is called a \textbf{phenomenal image}.
 \end{definition}
-\begin{definition}[Không gian sao]
-	Tập tất cả các sao vận số ứng với độ phân giải $n$ được gọi là \textbf{Không gian sao}, được ký hiệu là $V$. Dễ thấy $\card V = 2^n$.
+\begin{definition}[Star Space]
+	The set of all destiny stars corresponding to resolution $n$ is defined as the \textbf{Star Space}, denoted by $V$. It is straightforward to see that $\card V = 2^n$.
 \end{definition}
-\begin{definition}[Hàm ngữ nghĩa]
-	Xét $\alpha \in \set{0,1}^n$, ứng với từng $V_\alpha \in V$, ta định nghĩa $m : V_\alpha \to S$ và gọi $m$ là \textbf{Hàm ngữ nghĩa} của $V_\alpha$, với $s \in S$ là một câu diễn dịch ứng với $v_\alpha \in V_\alpha$.
+\begin{definition}[Semantic Function]
+	Given $\alpha \in \set{0,1}^n$, for each $V_\alpha \in V$, we define $m : V_\alpha \to S$ as the \textbf{Semantic Function} of $V_\alpha$, where $s \in S$ is an interpretive proposition corresponding to $v_\alpha \in V_\alpha$.
 \end{definition}
-\begin{definition}[Không gian lĩnh vực]
-	Xét $\beta \in \{0,1\}^{\frac{n}{2}}$ với $n$ là độ phân giải vận số. Ta gọi phân hoạch của không gian vũ trụ $\Omega$ thành $2^{\frac{n}{2}}$ tập con rời nhau là \textbf{Không gian lĩnh vực}, ký hiệu là $\mathcal{C}$.
+\begin{definition}[Domain Space]
+	Let $\beta \in \{0,1\}^{\frac{n}{2}}$ with $n$ being the destiny resolution. We define the partition of the universal space $\Omega$ into $2^{\frac{n}{2}}$ disjoint subsets as the \textbf{Domain Space}, denoted by $\mathcal{C}$.
 
-	Mỗi tập con $C_\beta \in \mathcal{C}$ đại diện cho một lĩnh vực đời sống, được xác định bởi:
+	Each subset $C_\beta \in \mathcal{C}$ represents a domain of life, defined by:
 	$$C_\beta := \prod_{i=1}^{\frac{n}{2}} \Omega_{d(b_i)}$$
 
-	Không gian lĩnh vực $\mathcal{C} = \left\{ C_\beta \mid \beta \in \{0,1\}^{\frac{n}{2}} \right\}$ thỏa mãn hệ tiên đề phân hoạch:
+	The domain space $\mathcal{C} = \left\{ C_\beta \mid \beta \in \{0,1\}^{\frac{n}{2}} \right\}$ satisfies the partition axioms:
 	\begin{enumerate}[label=\roman*)]
 		\item $\bigcup_{\beta \in \{0,1\}^{\frac{n}{2}}} C_\beta = \Omega$
 		\item $C_{\beta_1} \cap C_{\beta_2} = \emptyset \quad \forall \beta_1 \neq \beta_2$
 	\end{enumerate}
 \end{definition}
-\chapter{Mô hình vận số học với độ phân giải vận số $n=8$}
-Trở lại với hệ thống lý thuyết tổng quan đã được thiết lập ở Chương 1, việc lựa chọn một độ phân giải cụ thể đóng vai trò quyết định trong việc cân bằng giữa độ chi tiết của mô hình và tính tối ưu trong tính toán. Trong chương này, chúng ta nghiên cứu mô hình Vận số học ứng với độ phân giải vận số $n = 8$.
 
-Việc chọn $n = 8$ mang lại một cấu trúc nhị phân đối xứng và tối ưu về mặt thông tin:
+\chapter{Destiny Dynamics Model at Resolution $n=8$}
+Returning to the general theoretical foundation established in Chapter 1, selecting a specific resolution plays a crucial role in balancing model granularity and computational efficiency. In this chapter, we investigate the Destiny Dynamics model at resolution $n = 8$.
+
+Selecting $n = 8$ yields a symmetric binary structure that is informationally optimal:
 \begin{itemize}
-	\item \textbf{Không gian sao ($V$):} Với $n = 8$, lực lượng của không gian sao đạt $\text{card } V = 2^8 = 256$ sao vận số. Mỗi sao $V_\alpha$ được mã hóa bằng một chuỗi nhị phân độ dài 8, biểu thị một trạng thái tương tác vi mô của vũ trụ.
-	\item \textbf{Không gian lĩnh vực ($\mathcal{C}$):} Với độ phân giải địa bàn $k = \frac{n}{2} = 4$, địa bàn nhân sinh được phân hoạch thành đúng $\text{card } \mathcal{C} = 2^4 = 16$ lĩnh vực đời sống. Độ dài chuỗi mã hóa 4 bit cho phép phân loại vĩ mô các bối cảnh nhân sinh theo hệ tọa độ 4 chiều độc lập.
+	\item \textbf{Star Space ($V$):} At $n = 8$, the cardinality of the star space reaches $\text{card } V = 2^8 = 256$ destiny stars. Each star $V_\alpha$ is encoded as an 8-bit binary string, representing a micro-interaction state of the universe.
+	\item \textbf{Domain Space ($\mathcal{C}$):} At domain resolution $k = \frac{n}{2} = 4$, the human experience domain is partitioned into exactly $\text{card } \mathcal{C} = 2^4 = 16$ life domains. The 4-bit binary string length enables macro-classification of life contexts across an independent 4-dimensional coordinate system.
 \end{itemize}
 
-Ngoài ra, việc mã hóa dạng 8 bit ($1\text{ byte}$) cho phép mô hình Vận số học dễ dàng tích hợp và xử lý trực tiếp trên các hệ thống máy tính hiện đại, chuyển hóa hoàn toàn bộ môn dự trắc cổ phương thành một thuật toán xử lý dữ liệu cấu trúc rõ ràng.
+Furthermore, an 8-bit ($1\text{ byte}$) encoding scheme allows the Destiny Dynamics model to be directly integrated and processed on modern computer architectures, fully transforming traditional predictive discipline into a structured data processing algorithm.
 
-Chương này sẽ tập trung định danh chi tiết 16 lĩnh vực đời sống, phân cấu trúc 256 sao vận số, và xây dựng các hàm ánh xạ phân bổ cùng toán tử tương tác giữa Sao và Cung trên lá số.
-\section{Giải mã Không gian Lĩnh vực}
+This chapter focuses on formally defining the 16 life domains, structuring the 256 destiny stars, and constructing allocation mapping functions as well as interaction operators between Stars and Domains on a chart.
 
-Với độ phân giải $n=8$, Không gian lĩnh vực $\mathcal{C}$ gồm đúng $2^4 = 16$ tập hợp con rời nhau. Để xây dựng hàm ngữ nghĩa $m: C_\beta \rightarrow S$ một cách tự nhiên và loại bỏ tính khiên cưỡng, ta mô hình hóa mỗi chuỗi mã nhị phân $\beta = (b_1, b_2, b_3, b_4) \in \{0,1\}^4$ thành một vị trí trong hệ tọa độ nhân sinh 4 chiều.
+\section{Decoding the Domain Space}
 
-\subsection{Hệ trục tọa độ nhị phân nhân sinh}
+At resolution $n=8$, the Domain Space $\mathcal{C}$ consists of exactly $2^4 = 16$ disjoint subsets. To construct the semantic function $m: C_\beta \rightarrow S$ naturally and rigorously, we model each binary code string $\beta = (b_1, b_2, b_3, b_4) \in \{0,1\}^4$ as a position within a 4-dimensional human domain coordinate system.
 
-Mỗi bit $b_i$ trong chuỗi $\beta$ đại diện cho một phép phân tách nhị phân (Binary Dichotomy) đối với không gian trải nghiệm đời sống:
+\subsection{The 4D Binary Human Coordinate System}
+
+Each bit $b_i$ in string $\beta$ represents a binary dichotomy over the space of human experience:
 
 \begin{enumerate}[label=\arabic*.]
-	\item \textbf{Bit $b_1$ -- Chiều Không gian trải nghiệm (Internal vs. External):}
+	\item \textbf{Bit $b_1$ -- Experience Space Dimension (Internal vs. External):}
 	      \begin{itemize}
-		      \item $b_1 = 0$ ($\Omega_-$): Hướng nội, thuộc về bản thể, tinh thần, nền tảng ẩn hoặc đời sống riêng tư.
-		      \item $b_1 = 1$ ($\Omega_+$): Hướng ngoại, thuộc về bối cảnh vật lý, môi trường công cộng và xuất lộ ra bên ngoài.
+		      \item $b_1 = 0$ ($\Omega_-$): Internal, belonging to selfhood, spirit, latent foundations, or private life.
+		      \item $b_1 = 1$ ($\Omega_+$): External, belonging to physical context, public environment, and outward manifestation.
 	      \end{itemize}
 
-	\item \textbf{Bit $b_2$ -- Chiều Chủ thể tương tác (Self vs. Others):}
+	\item \textbf{Bit $b_2$ -- Interacting Subject Dimension (Self vs. Others):}
 	      \begin{itemize}
-		      \item $b_2 = 0$ ($\Omega_-$): Cá nhân, nội tại chủ quan, tập trung vào bản thân chủ thể.
-		      \item $b_2 = 1$ ($\Omega_+$): Khách thể, mối tương tác đối ngoại, mối quan hệ với các đối tượng khác.
+		      \item $b_2 = 0$ ($\Omega_-$): Subjective/Self, subjective internal focus on the individual entity.
+		      \item $b_2 = 1$ ($\Omega_+$): Objective/Others, external interactive relations with other entities.
 	      \end{itemize}
 
-	\item \textbf{Bit $b_3$ -- Chiều Nguồn gốc tính chất (Natural vs. Structured):}
+	\item \textbf{Bit $b_3$ -- Origin Nature Dimension (Natural vs. Structured):}
 	      \begin{itemize}
-		      \item $b_3 = 0$ ($\Omega_-$): Tự nhiên, bẩm sinh, huyết thống, cảm xúc hữu cơ hoặc di truyền.
-		      \item $b_3 = 1$ ($\Omega_+$): Cấu trúc, tự tạo, xã hội hóa, quy ước, thể chế hoặc thành tựu tích lũy.
+		      \item $b_3 = 0$ ($\Omega_-$): Natural, innate, lineage-based, organic emotion, or genetic heritage.
+		      \item $b_3 = 1$ ($\Omega_+$): Structured, self-created, socialized, conventional, institutional, or accumulated achievement.
 	      \end{itemize}
 
-	\item \textbf{Bit $b_4$ -- Chiều Trạng thái vận động (Static vs. Dynamic):}
+	\item \textbf{Bit $b_4$ -- State of Motion Dimension (Static vs. Dynamic):}
 	      \begin{itemize}
-		      \item $b_4 = 0$ ($\Omega_-$): Tĩnh, nền tảng, trạng thái tích lũy, tài nguyên hoặc tiềm năng.
-		      \item $b_4 = 1$ ($\Omega_+$): Động, hành động, biến đổi, sự vận hành hoặc công danh/sự nghiệp.
+		      \item $b_4 = 0$ ($\Omega_-$): Static, foundational, accumulated state, resources, or latent potential.
+		      \item $b_4 = 1$ ($\Omega_+$): Dynamic, action-oriented, transformative, operational, or career/profession.
 	      \end{itemize}
 \end{enumerate}
 
-\subsection{Ma trận 16 Lĩnh vực Nhân sinh}
+\subsection{Matrix of 16 Life Domains}
 
-Mỗi cung $C_\beta \in \mathcal{C}$ là kết quả tích Descartes của 4 không gian thành phần tương ứng với chuỗi bit $\beta$. Bảng \ref{tab:16_linh_vuc} định danh chính xác ngữ nghĩa của 16 lĩnh vực đời sống thu được từ tổ hợp các trục tọa độ.
+Each palace $C_\beta \in \mathcal{C}$ is the Cartesian product of the 4 constituent spaces corresponding to the bit string $\beta$. Table \ref{tab:16_linh_vuc} defines the precise semantics of the 16 life domains derived from the coordinate axis combinations.
 
 \begin{table}[htbp]
 	\centering
-	\caption{Bảng mã hóa ngữ nghĩa 16 Lĩnh vực Nhân sinh trong không gian $\mathcal{C}$}
+	\caption{Semantic encoding matrix of 16 Life Domains in space $\mathcal{C}$}
 	\label{tab:16_linh_vuc}
 	\small
 	\begin{tabular}{ccll}
 		\toprule
-		\textbf{STT} & \textbf{Mã $\beta$} & \textbf{Tọa độ Nhị phân $(b_1b_2b_3b_4)$} & \textbf{Lĩnh vực Đời sống (Ngữ nghĩa $m(C_\beta)$)}     \\
+		\textbf{No.} & \textbf{Code $\beta$} & \textbf{Binary Coordinates $(b_1b_2b_3b_4)$} & \textbf{Life Domain (Semantics $m(C_\beta)$)}     \\
 		\midrule
-		0            & \texttt{0000}       & Nội -- Chủ -- Tự nhiên -- Tĩnh            & Tâm trí \& Căn tính (Tiềm thức, tư tưởng)               \\
-		1            & \texttt{0001}       & Nội -- Chủ -- Tự nhiên -- Động            & Tâm lý \& Phản ứng (Cảm xúc nội tại, động lực)          \\
-		2            & \texttt{0010}       & Nội -- Chủ -- Cấu trúc -- Tĩnh            & Tài sản Nội tại (Tri thức, trải nghiệm tích lũy)        \\
-		3            & \texttt{0011}       & Nội -- Chủ -- Cấu trúc -- Động            & Rèn luyện \& Thói quen (Ý chí, sự tu tập cá nhân)       \\
-		4            & \texttt{0100}       & Nội -- Khách -- Tự nhiên -- Tĩnh          & Huyết thống Nội gia (Gia đình gốc, tổ tiên)             \\
-		5            & \texttt{0101}       & Nội -- Khách -- Tự nhiên -- Động          & Tình cảm Đời tư (Mối quan hệ thân mật, tình yêu)        \\
-		6            & \texttt{0110}       & Nội -- Khách -- Cấu trúc -- Tĩnh          & Gia sản Chung (Tài chính gia đình, thừa kế)             \\
-		7            & \texttt{0111}       & Nội -- Khách -- Cấu trúc -- Động          & Nghĩa vụ Gia đạo (Trách nhiệm với người thân)           \\
-		8            & \texttt{1000}       & Ngoại -- Chủ -- Tự nhiên -- Tĩnh          & Thân thể \& Thể chất (Cơ thể vật lý, gen)               \\
-		9            & \texttt{1001}       & Ngoại -- Chủ -- Tự nhiên -- Động          & Hành vi \& Di chuyển (Xuất ngoại, tương tác môi trường) \\
-		10           & \texttt{1010}       & Ngoại -- Chủ -- Cấu trúc -- Tĩnh          & Tài chính Cá nhân (Tiền bạc, của cải vật chất)          \\
-		11           & \texttt{1011}       & Ngoại -- Chủ -- Cấu trúc -- Động          & Sự nghiệp \& Công danh (Chức vụ, công việc)             \\
-		12           & \texttt{1100}       & Ngoại -- Khách -- Tự nhiên -- Tĩnh        & Mạng lưới Xã hội (Bạn bè, cộng đồng tự nhiên)           \\
-		13           & \texttt{1101}       & Ngoại -- Khách -- Tự nhiên -- Động        & Giao tiếp \& Đối ngoại (Quan hệ công cộng)              \\
-		14           & \texttt{1110}       & Ngoại -- Khách -- Cấu trúc -- Tĩnh        & Đối tác \& Hợp đồng (Liên minh làm ăn, pháp lý)         \\
-		15           & \texttt{1111}       & Ngoại -- Khách -- Cấu trúc -- Động        & Vị thế Xã hội \& Ảnh hưởng (Thành tựu cộng đồng)        \\
+		0            & \texttt{0000}       & Internal -- Self -- Natural -- Static       & Mind \& Identity (Subconscious, ideology)        \\
+		1            & \texttt{0001}       & Internal -- Self -- Natural -- Dynamic      & Psychology \& Response (Emotions, motivation)    \\
+		2            & \texttt{0010}       & Internal -- Self -- Structured -- Static    & Intrinsic Assets (Knowledge, accumulated exp.)   \\
+		3            & \texttt{0011}       & Internal -- Self -- Structured -- Dynamic   & Discipline \& Habit (Willpower, self-cultivation)\\
+		4            & \texttt{0100}       & Internal -- Others -- Natural -- Static     & Lineage \& Heritage (Family of origin, ancestors)\\
+		5            & \texttt{0101}       & Internal -- Others -- Natural -- Dynamic    & Private Affection (Intimate relations, romance)  \\
+		6            & \texttt{0110}       & Internal -- Others -- Structured -- Static   & Joint Estate (Family finances, inheritance)      \\
+		7            & \texttt{0111}       & Internal -- Others -- Structured -- Dynamic  & Domestic Obligation (Kinship responsibilities)   \\
+		8            & \texttt{1000}       & External -- Self -- Natural -- Static       & Physicality \& Health (Physical body, genetics)  \\
+		9            & \texttt{1001}       & External -- Self -- Natural -- Dynamic      & Behavior \& Mobility (Relocation, env. interaction) \\
+		10           & \texttt{1010}       & External -- Self -- Structured -- Static    & Personal Finance (Wealth, material assets)       \\
+		11           & \texttt{1011}       & External -- Self -- Structured -- Dynamic   & Career \& Profession (Position, occupation)      \\
+		12           & \texttt{1100}       & External -- Others -- Natural -- Static     & Social Network (Friends, natural community)      \\
+		13           & \texttt{1101}       & External -- Others -- Natural -- Dynamic    & Communication \& Public Relations (Social relations)\\
+		14           & \texttt{1110}       & External -- Others -- Structured -- Static  & Partnership \& Contracts (Business alliances, legal)\\
+		15           & \texttt{1111}       & External -- Others -- Structured -- Dynamic  & Social Standing \& Influence (Public achievements)\\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-\begin{md}[Tính đầy đủ của Không gian Lĩnh vực]
-	Do $b_i \in \{0,1\}$ đại diện cho hai nửa phân hoạch $\Omega_-$ và $\Omega_+$ của vũ trụ $\Omega$, ma trận 16 cung $C_\beta$ phủ kín toàn bộ mọi khả năng trải nghiệm nhân sinh mà không bị chồng lấp hay bỏ sót bất kỳ bối cảnh nào.
+\begin{md}[Completeness of the Domain Space]
+	Since $b_i \in \{0,1\}$ represents the two partition halves $\Omega_-$ and $\Omega_+$ of the universe $\Omega$, the matrix of 16 domains $C_\beta$ completely covers all possible human experience contexts without overlap or omission.
 \end{md}
 
-\subsection{Phân tích Ngữ nghĩa Cấu trúc của Không gian Lĩnh vực}
+\subsection{Structural Semantic Analysis of the Domain Space}
 
-Thay vì gán gượng ép các tên gọi tĩnh cố định cho từng tập hợp $C_\beta$, bản chất của Vận số học cho phép ta **dựng hàm ngữ nghĩa $m(C_\beta)$ thông qua phương pháp phân tích cấu trúc nhị phân** của chuỗi $\beta = (b_1, b_2, b_3, b_4) \in \{0,1\}^4$.
+Rather than arbitrarily assigning static fixed names to each set $C_\beta$, the mathematical nature of Destiny Dynamics allows us to **construct the semantic function $m(C_\beta)$ via structural binary analysis** of the bit string $\beta = (b_1, b_2, b_3, b_4) \in \{0,1\}^4$.
 
-Mỗi chuỗi $\beta$ không phải là một nhãn tên, mà là một **véc-tơ thuộc tính** quy định xu hướng vận động, tương tác và biểu hiện của mọi hiện tượng thuộc lĩnh vực đó.
+Each string $\beta$ is not merely a label, but an **attribute vector** that governs the directional movement, interaction, and manifestation of all phenomena within that domain.
 
-\subsubsection{Cơ chế sinh ngữ nghĩa từ véc-tơ thuộc tính}
+\subsubsection{Semantic Generation Mechanism from Attribute Vectors}
 
-Hàm ngữ nghĩa $m: \mathcal{C} \rightarrow \mathcal{P}(S)$ (với $\mathcal{P}(S)$ là tập các phát biểu diễn dịch) được cấu thành dựa trên sự tổng hòa các đặc tính:
+The semantic function $m: \mathcal{C} \rightarrow \mathcal{P}(S)$ (where $\mathcal{P}(S)$ is the power set of interpretive propositions) is constructed based on the synthesis of structural characteristics:
 
 \begin{enumerate}[label=\arabic*.]
-	\item \textbf{Tính chất Thuần (Pure States) và Độ lệch Âm/Dương:}
+	\item \textbf{Pure States and Yin/Yang Bias:}
 	      \begin{itemize}
-		      \item Mã $\beta = (0,0,0,0)$ (Trạng thái \textbf{Thuần Âm}): Đại diện cho không gian mang tính thu hút toàn diện, tích tụ tuyệt đối, hướng nội, tĩnh tại, tiếp nhận và tiềm ẩn. Mọi hiện tượng mang bản chất tự thân, lắng đọng, tiềm thức hay nền tảng sâu nhất của đời sống đều hội tụ về tập $C_{(0,0,0,0)}$.
-		      \item Mã $\beta = (1,1,1,1)$ (Trạng thái \textbf{Thuần Dương}): Đại diện cho không gian phát tán toàn diện, xuất lộ tuyệt đối, hướng ngoại, bùng nổ, vận động và công khai. Mọi hiện tượng mang tính tương tác xã hội đỉnh cao, ảnh hưởng diện rộng hay sự bộc phát ra bên ngoài đều hội tụ về tập $C_{(1,1,1,1)}$.
+		      \item Code $\beta = (0,0,0,0)$ (\textbf{Pure Yin} State): Represents a fully receptive, absolute accumulating, internal, static, absorbing, and latent space. All phenomena characterized by selfhood, stillness, subconsciousness, or deep foundational elements converge into $C_{(0,0,0,0)}$.
+		      \item Code $\beta = (1,1,1,1)$ (\textbf{Pure Yang} State): Represents a fully expressive, absolute manifesting, external, explosive, dynamic, and public space. All phenomena involving high-level social interaction, wide influence, or outward manifestation converge into $C_{(1,1,1,1)}$.
 	      \end{itemize}
 
-	\item \textbf{Cấu trúc Đối kháng và Xung chiếu ($\oplus$):}
-	      Hai lĩnh vực $C_\beta$ và $C_{\beta'}$ được gọi là đối kháng hoàn toàn về mặt ngữ nghĩa nếu $\beta' = \overline{\beta}$ (nghĩa là $\beta \oplus \beta' = (1,1,1,1)$). Sự tương tác giữa hai lĩnh vực này phản ánh mối quan hệ cân bằng Âm -- Dương giữa cái tiềm ẩn bên trong và cái bộc lộ ra bên ngoài.
+	\item \textbf{Antagonistic Structure and Opposition ($\oplus$):}
+	      Two domains $C_\beta$ and $C_{\beta'}$ are defined as completely semantic opposites if $\beta' = \overline{\beta}$ (meaning $\beta \oplus \beta' = (1,1,1,1)$). The interaction between these two domains reflects the Yin--Yang equilibrium between internal latency and external exposure.
 
-	\item \textbf{Tính bao phủ toàn diện (Semantic Completeness):}
-	      Do $2^4 = 16$ chuỗi nhị phân phủ kín mọi tổ hợp trạng thái Âm/Dương trên 4 trục thuộc tính, bất kỳ sự việc, hoàn cảnh hay đối tượng nào trong cuộc sống thực tế đều có thể được chiếu (project) chính xác vào đúng tập $C_\beta$ tương ứng dựa trên véc-tơ thuộc tính của nó.
+	\item \textbf{Semantic Completeness:}
+	      Because $2^4 = 16$ binary strings cover all state combinations across 4 attribute axes, any event, situation, or entity in real-world experience can be mapped (projected) directly into its corresponding set $C_\beta$ based on its attribute vector.
 \end{enumerate}
 
-\begin{remark}[Tính động của Hàm ngữ nghĩa]
-	Diễn dịch ngôn ngữ $m(C_\beta)$ không bị giới hạn bởi các khái niệm nhân sinh truyền thống (như Tài bạch, Quan lộc, Phu thê), mà mở rộng thành một công cụ phân tích đa chiều: Bất kỳ khía cạnh nào của đời sống — dù là trong bối cảnh xã hội cổ đại hay hiện đại — đều là một phần tử $\omega \in \Omega$ thuộc về đúng một trong 16 trạng thái cấu trúc $C_\beta$.
+\begin{remark}[Dynamic Nature of the Semantic Function]
+	Language interpretation $m(C_\beta)$ is not constrained by traditional destiny terminology (such as Wealth, Career, Spouse palaces), but expands into a multidimensional analytical tool: Any aspect of life—whether in ancient or modern societal contexts—is an element $\omega \in \Omega$ belonging strictly to one of the 16 structural states $C_\beta$.
 \end{remark}
 \end{document}
